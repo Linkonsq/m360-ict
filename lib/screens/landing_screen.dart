@@ -124,7 +124,7 @@ class PlaceCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         children: [
@@ -173,24 +173,33 @@ class PlaceCard extends StatelessWidget {
                       color: kPrimaryColor,
                     ),
                   ),
+                  SizedBox(width: 8),
                   Column(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
+                        width: 49,
+                        height: 24,
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: kPrimaryColor,
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text(
-                          percentage,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_drop_down,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              percentage,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const Text(
@@ -318,7 +327,11 @@ class PlaceCard extends StatelessWidget {
                       children: const [
                         Text(
                           'View Details',
-                          style: TextStyle(color: kPrimaryColor, fontSize: 10),
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Icon(Icons.arrow_right, size: 25, color: kPrimaryColor),
                       ],
