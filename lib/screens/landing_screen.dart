@@ -206,37 +206,47 @@ class PlaceCard extends StatelessWidget {
                 ],
               ),
               Column(
-                spacing: -15,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
-                        radius: 12,
-                        backgroundImage: AssetImage(
-                          'assets/images/person_1.png',
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      CircleAvatar(
-                        radius: 12,
-                        backgroundImage: AssetImage(
-                          'assets/images/person_2.png',
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      if (peopleCount > 2)
-                        CircleAvatar(
-                          radius: 12,
-                          backgroundColor: Colors.grey.shade200,
+                      if (placeName == 'Home')
+                        for (int i = 1; i < 4; i++)
+                          SizedBox(
+                            height: 36,
+                            width: 36,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/images/person_$i.png',
+                              ),
+                            ),
+                          )
+                      else
+                        for (int i = 4; i < 9; i++)
+                          SizedBox(
+                            height: 36,
+                            width: 36,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/images/person_$i.png',
+                              ),
+                            ),
+                          ),
+                      SizedBox(
+                        height: 36,
+                        width: 36,
+                        child: CircleAvatar(
+                          backgroundColor: Color(0xFFD9D9D9),
                           child: Text(
                             '+${peopleCount}',
                             style: const TextStyle(
-                              fontSize: 10,
-                              color: Colors.black,
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
+                      ),
                     ],
                   ),
                   TextButton(
