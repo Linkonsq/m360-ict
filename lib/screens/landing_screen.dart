@@ -17,88 +17,90 @@ class LandingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Top card with user info
-          Container(
+          SizedBox(
             height: 206,
-            // decoration: BoxDecoration(
-            //   borderRadius: BorderRadius.only(
-            //     bottomRight: Radius.circular(50),
-            //     bottomLeft: Radius.circular(50),
-            //   ),
-            // ),
-            child: Stack(
-              children: [
-                CustomPaint(
-                  size: const Size(double.infinity, double.infinity),
-                  painter: DiagonalBackgroundPainter(),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Good Morning",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            const Text(
-                              "Ahmed Ariyan",
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            RichText(
-                              text: TextSpan(
-                                style: const TextStyle(
-                                  fontSize: 14,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
+              ),
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: const Size(double.infinity, double.infinity),
+                    painter: DiagonalBackgroundPainter(),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Good Morning",
+                                style: TextStyle(
+                                  fontSize: 16,
                                   color: Colors.grey,
+                                  fontWeight: FontWeight.w300,
                                 ),
-                                children: [
-                                  const TextSpan(text: "You are in a "),
-                                  TextSpan(
-                                    text: "healthy",
-                                    style: TextStyle(
-                                      color: Colors.green.shade600,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const TextSpan(text: " environment"),
-                                ],
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 5),
+                              const Text(
+                                "Ahmed Ariyan",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              //const SizedBox(height: 50),
+                              RichText(
+                                text: TextSpan(
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  children: [
+                                    const TextSpan(text: "You are in a "),
+                                    TextSpan(
+                                      text: "healthy",
+                                      style: TextStyle(
+                                        color: Colors.green.shade600,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const TextSpan(text: " environment"),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                          height: 97,
-                          width: 97,
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(
-                              'assets/images/profile.png',
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            height: 97,
+                            width: 97,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/images/profile.png',
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 24),
