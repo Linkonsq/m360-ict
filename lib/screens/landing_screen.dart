@@ -211,42 +211,105 @@ class PlaceCard extends StatelessWidget {
                   Row(
                     children: [
                       if (placeName == 'Home')
-                        for (int i = 1; i < 4; i++)
-                          SizedBox(
-                            height: 36,
-                            width: 36,
-                            child: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                'assets/images/person_$i.png',
+                        SizedBox(
+                          width: 36 + (4 - 1) * 18.0,
+                          height: 36,
+                          child: Stack(
+                            children: [
+                              for (int i = 1; i <= 3; i++)
+                                Positioned(
+                                  left: (i - 1) * 18.0,
+                                  child: Container(
+                                    height: 39,
+                                    width: 39,
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                        'assets/images/person_$i.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              Positioned(
+                                left: (4 - 1) * 18.0,
+                                child: Container(
+                                  height: 39,
+                                  width: 39,
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: CircleAvatar(
+                                    backgroundColor: Color(0xFFD9D9D9),
+                                    child: Text(
+                                      '+$peopleCount',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
-                      else
-                        for (int i = 4; i < 9; i++)
-                          SizedBox(
-                            height: 36,
-                            width: 36,
-                            child: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                'assets/images/person_$i.png',
-                              ),
-                            ),
+                            ],
                           ),
-                      SizedBox(
-                        height: 36,
-                        width: 36,
-                        child: CircleAvatar(
-                          backgroundColor: Color(0xFFD9D9D9),
-                          child: Text(
-                            '+${peopleCount}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
+                        )
+                      else
+                        SizedBox(
+                          width: 36 + (6 - 1) * 18.0,
+                          height: 36,
+                          child: Stack(
+                            children: [
+                              for (int i = 4; i <= 8; i++)
+                                Positioned(
+                                  left: (i - 4) * 18.0,
+                                  child: Container(
+                                    height: 39,
+                                    width: 39,
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                        'assets/images/person_$i.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              Positioned(
+                                left: (9 - 4) * 18.0,
+                                child: Container(
+                                  height: 39,
+                                  width: 39,
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: CircleAvatar(
+                                    backgroundColor: Color(0xFFD9D9D9),
+                                    child: Text(
+                                      '+$peopleCount',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
                     ],
                   ),
                   TextButton(
