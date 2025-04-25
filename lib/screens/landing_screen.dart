@@ -44,7 +44,7 @@ class LandingScreen extends StatelessWidget {
                                 "Good Morning",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.grey,
+                                  color: kGreyTextColor,
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),
@@ -54,7 +54,7 @@ class LandingScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.black,
+                                  color: kTitleTextColor,
                                 ),
                               ),
                               //const SizedBox(height: 50),
@@ -62,7 +62,7 @@ class LandingScreen extends StatelessWidget {
                                 text: TextSpan(
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    color: kGreyTextColor,
                                     fontWeight: FontWeight.w300,
                                   ),
                                   children: [
@@ -70,7 +70,7 @@ class LandingScreen extends StatelessWidget {
                                     TextSpan(
                                       text: "healthy",
                                       style: TextStyle(
-                                        color: Colors.green.shade600,
+                                        color: kPrimaryColor,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

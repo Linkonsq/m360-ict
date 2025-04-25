@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:m360_ict/screens/splash_screen.dart';
 
 // Define primary color constant
 const Color kPrimaryColor = Color(0xFF47BA80);
+const Color kTitleTextColor = Color(0xFF1E1E1E);
+const Color kBoldTextColor = Color(0xFF000000);
+const Color kGreyTextColor = Color(0xFF838383);
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +31,6 @@ class MyApp extends StatelessWidget {
       designSize: const Size(402, 874),
       minTextAdapt: true,
       splitScreenMode: true,
-      // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -36,6 +39,10 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
             primaryColor: kPrimaryColor,
             useMaterial3: true,
+            textTheme: GoogleFonts.poppinsTextTheme(
+              Theme.of(context).textTheme,
+            ),
+            fontFamily: GoogleFonts.poppins().fontFamily,
           ),
           home: const SplashScreen(),
         );
