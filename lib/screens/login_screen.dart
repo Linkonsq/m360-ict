@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
+import 'package:m360_ict/screens/send_otp_screen.dart';
+import 'package:m360_ict/screens/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -145,13 +147,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SendOTPScreen(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Forgotten Password',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: kPrimaryColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -231,7 +240,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SignUpScreen(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'Sign Up',
                           style: TextStyle(
