@@ -139,20 +139,23 @@ class PlaceCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                width: 70,
-                height: 24,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  status,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Container(
+                  width: 70,
+                  height: 24,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    status,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
@@ -161,7 +164,7 @@ class PlaceCard extends StatelessWidget {
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
                 children: [
@@ -220,14 +223,33 @@ class PlaceCard extends StatelessWidget {
                   Row(
                     children: [
                       if (placeName == 'Home')
-                        SizedBox(
-                          width: 36 + (4 - 1) * 18.0,
-                          height: 36,
-                          child: Stack(
-                            children: [
-                              for (int i = 1; i <= 3; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: SizedBox(
+                            width: 36 + (4 - 1) * 18.0,
+                            height: 36,
+                            child: Stack(
+                              children: [
+                                for (int i = 1; i <= 3; i++)
+                                  Positioned(
+                                    left: (i - 1) * 18.0,
+                                    child: Container(
+                                      height: 39,
+                                      width: 39,
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                          'assets/images/person_$i.png',
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 Positioned(
-                                  left: (i - 1) * 18.0,
+                                  left: (4 - 1) * 18.0,
                                   child: Container(
                                     height: 39,
                                     width: 39,
@@ -237,47 +259,50 @@ class PlaceCard extends StatelessWidget {
                                       shape: BoxShape.circle,
                                     ),
                                     child: CircleAvatar(
-                                      backgroundImage: AssetImage(
-                                        'assets/images/person_$i.png',
+                                      backgroundColor: Color(0xFFD9D9D9),
+                                      child: Text(
+                                        '+$peopleCount',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              Positioned(
-                                left: (4 - 1) * 18.0,
-                                child: Container(
-                                  height: 39,
-                                  width: 39,
-                                  padding: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: CircleAvatar(
-                                    backgroundColor: Color(0xFFD9D9D9),
-                                    child: Text(
-                                      '+$peopleCount',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                       else
-                        SizedBox(
-                          width: 36 + (6 - 1) * 18.0,
-                          height: 36,
-                          child: Stack(
-                            children: [
-                              for (int i = 4; i <= 8; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: SizedBox(
+                            width: 36 + (6 - 1) * 18.0,
+                            height: 36,
+                            child: Stack(
+                              children: [
+                                for (int i = 4; i <= 8; i++)
+                                  Positioned(
+                                    left: (i - 4) * 18.0,
+                                    child: Container(
+                                      height: 39,
+                                      width: 39,
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                          'assets/images/person_$i.png',
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 Positioned(
-                                  left: (i - 4) * 18.0,
+                                  left: (9 - 4) * 18.0,
                                   child: Container(
                                     height: 39,
                                     width: 39,
@@ -287,54 +312,42 @@ class PlaceCard extends StatelessWidget {
                                       shape: BoxShape.circle,
                                     ),
                                     child: CircleAvatar(
-                                      backgroundImage: AssetImage(
-                                        'assets/images/person_$i.png',
+                                      backgroundColor: Color(0xFFD9D9D9),
+                                      child: Text(
+                                        '+$peopleCount',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              Positioned(
-                                left: (9 - 4) * 18.0,
-                                child: Container(
-                                  height: 39,
-                                  width: 39,
-                                  padding: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: CircleAvatar(
-                                    backgroundColor: Color(0xFFD9D9D9),
-                                    child: Text(
-                                      '+$peopleCount',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                     ],
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Row(
-                      children: const [
-                        Text(
-                          'View Details',
-                          style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                  InkWell(
+                    onTap: () {},
+                    child: Padding(
+                      padding: EdgeInsets.zero,
+                      child: Row(
+                        spacing: -6,
+                        children: const [
+                          Text(
+                            'View Details',
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        Icon(Icons.arrow_right, size: 25, color: kPrimaryColor),
-                      ],
+                          Icon(Icons.arrow_right, color: kPrimaryColor),
+                        ],
+                      ),
                     ),
                   ),
                 ],
