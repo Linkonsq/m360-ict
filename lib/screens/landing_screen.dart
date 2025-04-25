@@ -158,82 +158,100 @@ class PlaceCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 20),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                ppm,
-                style: const TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w300,
-                  color: kPrimaryColor,
-                ),
-              ),
-              //const SizedBox(width: 8),
-              Column(
+              Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
+                  Text(
+                    ppm,
+                    style: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.w300,
                       color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      percentage,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
                     ),
                   ),
-                  const Text(
-                    'ppm',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: kPrimaryColor,
-                      fontWeight: FontWeight.w300,
-                    ),
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          percentage,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        'ppm',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              //const SizedBox(width: 8),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 12,
-                backgroundImage: AssetImage('assets/images/person_1.png'),
-              ),
-              const SizedBox(width: 4),
-              CircleAvatar(
-                radius: 12,
-                backgroundImage: AssetImage('assets/images/person_2.png'),
-              ),
-              const SizedBox(width: 4),
-              if (peopleCount > 2)
-                CircleAvatar(
-                  radius: 12,
-                  backgroundColor: Colors.grey.shade200,
-                  child: Text(
-                    '+${peopleCount}',
-                    style: const TextStyle(fontSize: 10, color: Colors.black),
+              Column(
+                spacing: -15,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 12,
+                        backgroundImage: AssetImage(
+                          'assets/images/person_1.png',
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      CircleAvatar(
+                        radius: 12,
+                        backgroundImage: AssetImage(
+                          'assets/images/person_2.png',
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      if (peopleCount > 2)
+                        CircleAvatar(
+                          radius: 12,
+                          backgroundColor: Colors.grey.shade200,
+                          child: Text(
+                            '+${peopleCount}',
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
-                ),
-              const Spacer(),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: const [
-                    Text('View Details'),
-                    Icon(Icons.arrow_right, size: 25),
-                  ],
-                ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      children: const [
+                        Text(
+                          'View Details',
+                          style: TextStyle(color: kPrimaryColor, fontSize: 10),
+                        ),
+                        Icon(Icons.arrow_right, size: 25, color: kPrimaryColor),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
