@@ -13,88 +13,128 @@ class LandingScreen extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         child: const Icon(Icons.add, size: 32, color: Colors.white),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Top card with user info
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFD6F1DD),
-                  borderRadius: BorderRadius.circular(20),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Top card with user info
+          Container(
+            height: 206,
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.only(
+            //     bottomRight: Radius.circular(50),
+            //     bottomLeft: Radius.circular(50),
+            //   ),
+            // ),
+            child: Stack(
+              children: [
+                CustomPaint(
+                  size: const Size(double.infinity, double.infinity),
+                  painter: DiagonalBackgroundPainter(),
                 ),
-                padding: const EdgeInsets.all(16),
-                child: Row(
+                Row(
                   children: [
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Good Morning',
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Ahmed Ariyan',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Good Morning",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8),
-                          Text.rich(
-                            TextSpan(
-                              text: 'You are in a ',
-                              style: TextStyle(color: Colors.grey),
-                              children: [
-                                TextSpan(
-                                  text: 'healthy',
-                                  style: TextStyle(color: Colors.green),
+                            const SizedBox(height: 5),
+                            const Text(
+                              "Ahmed Ariyan",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            RichText(
+                              text: TextSpan(
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
                                 ),
-                                TextSpan(text: ' environment'),
-                              ],
+                                children: [
+                                  const TextSpan(text: "You are in a "),
+                                  TextSpan(
+                                    text: "healthy",
+                                    style: TextStyle(
+                                      color: Colors.green.shade600,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const TextSpan(text: " environment"),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                    CircleAvatar(
-                      radius: 44,
-                      backgroundImage: AssetImage('assets/images/profile.png'),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height: 97,
+                          width: 97,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(
+                              'assets/images/profile.png',
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 24),
-              const Text('My Places', style: TextStyle(fontSize: 18)),
-              const SizedBox(height: 16),
-
-              // Home Card
-              PlaceCard(
-                placeName: 'Home',
-                status: 'Good',
-                ppm: '652',
-                percentage: '13%',
-                statusColor: Colors.green,
-                peopleCount: 2,
-              ),
-              const SizedBox(height: 16),
-
-              // Office Card
-              PlaceCard(
-                placeName: 'Office',
-                status: 'Healthy',
-                ppm: '447',
-                percentage: '37%',
-                statusColor: Colors.green,
-                peopleCount: 47,
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          const SizedBox(height: 24),
+
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('My Places', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 16),
+
+                // Home Card
+                PlaceCard(
+                  placeName: 'Home',
+                  status: 'Good',
+                  ppm: '652',
+                  percentage: '13%',
+                  statusColor: Colors.green,
+                  peopleCount: 2,
+                ),
+                const SizedBox(height: 16),
+
+                // Office Card
+                PlaceCard(
+                  placeName: 'Office',
+                  status: 'Healthy',
+                  ppm: '447',
+                  percentage: '37%',
+                  statusColor: Colors.green,
+                  peopleCount: 47,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -164,7 +204,6 @@ class PlaceCard extends StatelessWidget {
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
                 children: [
@@ -335,7 +374,6 @@ class PlaceCard extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.zero,
                       child: Row(
-                        spacing: -6,
                         children: const [
                           Text(
                             'View Details',
@@ -358,4 +396,39 @@ class PlaceCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class DiagonalBackgroundPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double topSplitX = size.width * 0.45;
+    final double bottomSplitX = size.width * 0.75;
+
+    final leftPaint = Paint()..color = Color(0xFFE8F6EE);
+
+    final leftPath =
+        Path()
+          ..moveTo(0, 0)
+          ..lineTo(topSplitX, 0)
+          ..lineTo(bottomSplitX, size.height)
+          ..lineTo(0, size.height)
+          ..close();
+
+    canvas.drawPath(leftPath, leftPaint);
+
+    final rightPaint = Paint()..color = Color(0xFFD4F9E5);
+
+    final rightPath =
+        Path()
+          ..moveTo(topSplitX, 0)
+          ..lineTo(size.width, 0)
+          ..lineTo(size.width, size.height)
+          ..lineTo(bottomSplitX, size.height)
+          ..close();
+
+    canvas.drawPath(rightPath, rightPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
