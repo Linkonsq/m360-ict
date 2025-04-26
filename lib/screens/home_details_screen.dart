@@ -224,6 +224,7 @@ class HomeDetailsScreen extends StatelessWidget {
         lineBarsData: [
           LineChartBarData(
             spots: const [
+              FlSpot(0, 2.5),
               FlSpot(1, 3),
               FlSpot(2, 4),
               FlSpot(3, 5),
