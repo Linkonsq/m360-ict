@@ -190,8 +190,18 @@ class PlaceCard extends StatelessWidget {
                   height: 24,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: kPrimaryColor,
+                    //color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF47BA80),
+                        Color(0xFF42D588),
+                        Color(0xFF65D49C),
+                        Color(0xFF2DF28F),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                   ),
                   child: Text(
                     status,

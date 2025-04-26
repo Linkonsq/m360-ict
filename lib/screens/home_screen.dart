@@ -72,8 +72,17 @@ class HomeScreen extends StatelessWidget {
             height: 24,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: kPrimaryColor,
               borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF47BA80),
+                  Color(0xFF42D588),
+                  Color(0xFF65D49C),
+                  Color(0xFF2DF28F),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
             child: Text(
               "Good",
@@ -337,7 +346,6 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildPersonsCard() {
     return Container(
-      width: 161,
       height: 150,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -422,16 +430,12 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildRoomsCard() {
     return Container(
-      width: 161,
       height: 150,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        //color: kPrimaryColor,
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(
           colors: [Color(0xFF6Ec194), Color(0xFF9BF7C8)],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
         ),
       ),
       child: Column(
@@ -516,8 +520,6 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 gradient: LinearGradient(
                   colors: [Color(0xFF6Ec194), Color(0xFF9BF7C8)],
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
                 ),
               ),
               child: const Text(
