@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:m360_ict/screens/landing_screen.dart';
-import 'package:m360_ict/screens/login_screen.dart';
+import 'package:m360_ict/screens/home_screen.dart';
+import 'package:m360_ict/screens/signin_screen.dart';
 import 'package:m360_ict/screens/signup_screen.dart';
 import 'package:m360_ict/screens/splash_screen.dart';
 import 'package:m360_ict/services/auth_service.dart';
@@ -54,9 +54,9 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => AuthWrapper(),
-            '/login': (context) => LoginScreen(),
+            '/login': (context) => SignInScreen(),
             '/register': (context) => SignUpScreen(),
-            '/home': (context) => LandingScreen(),
+            '/home': (context) => HomeScreen(),
           },
         );
       },
@@ -108,9 +108,9 @@ class _AuthWrapperState extends State<AuthWrapper> {
         if (snapshot.connectionState == ConnectionState.active) {
           User? user = snapshot.data;
           if (user == null) {
-            return LoginScreen();
+            return SignInScreen();
           }
-          return LandingScreen();
+          return HomeScreen();
         }
         return SplashScreen();
       },

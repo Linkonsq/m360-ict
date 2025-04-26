@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
-import 'package:m360_ict/screens/login_screen.dart';
+import 'package:m360_ict/screens/signin_screen.dart';
 import 'package:m360_ict/services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -403,7 +403,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
+                                  builder: (context) => const SignInScreen(),
                                 ),
                               );
                             },

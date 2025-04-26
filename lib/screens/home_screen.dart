@@ -1,6 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
+import 'package:m360_ict/screens/home_details_screen.dart';
+import 'package:m360_ict/screens/office_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,532 +9,449 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 24,
-            right: 24,
-            top: 16,
-            bottom: 16,
-          ),
-          child: Column(
-            children: [
-              _buildHeader(context),
-              const SizedBox(height: 20),
-              _buildCO2Reading(),
-              const SizedBox(height: 30),
-              _buildHistorySection(),
-              const SizedBox(height: 30),
-              Row(
+      backgroundColor: const Color(0xFFF5FAF7),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kPrimaryColor,
+        child: const Icon(Icons.add, size: 32, color: Colors.white),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Top card with user info
+          SizedBox(
+            height: 206,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
+              ),
+              child: Stack(
                 children: [
-                  Expanded(child: _buildPersonsCard()),
-                  const SizedBox(width: 16),
-                  Expanded(child: _buildRoomsCard()),
+                  CustomPaint(
+                    size: const Size(double.infinity, double.infinity),
+                    painter: DiagonalBackgroundPainter(),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Good Morning",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: kGreyTextColor,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              const Text(
+                                "Ahmed Ariyan",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500,
+                                  color: kTitleTextColor,
+                                ),
+                              ),
+                              //const SizedBox(height: 50),
+                              RichText(
+                                text: TextSpan(
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: kGreyTextColor,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  children: [
+                                    const TextSpan(text: "You are in a "),
+                                    TextSpan(
+                                      text: "healthy",
+                                      style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const TextSpan(text: " environment"),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            height: 97,
+                            width: 97,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/images/profile.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              const SizedBox(height: 30),
-              _buildPlantsCard(),
-            ],
+            ),
           ),
-        ),
+          const SizedBox(height: 24),
+
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('My Places', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 16),
+
+                // Home Card
+                PlaceCard(
+                  placeName: 'Home',
+                  status: 'Good',
+                  ppm: '652',
+                  percentage: '13%',
+                  statusColor: Colors.green,
+                  peopleCount: 2,
+                ),
+                const SizedBox(height: 16),
+
+                // Office Card
+                PlaceCard(
+                  placeName: 'Office',
+                  status: 'Healthy',
+                  ppm: '447',
+                  percentage: '37%',
+                  statusColor: Colors.green,
+                  peopleCount: 47,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
+}
 
-  Widget _buildHeader(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Image.asset('assets/images/arrow_back.png'),
-            ),
-            const SizedBox(width: 14),
-            Image.asset('assets/images/home.png', width: 28, height: 28),
-            const SizedBox(width: 14),
-            const Text(
-              'Home',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w300,
-                color: kBoldTextColor,
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: Container(
-            width: 70,
-            height: 24,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF47BA80),
-                  Color(0xFF42D588),
-                  Color(0xFF65D49C),
-                  Color(0xFF2DF28F),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Text(
-              "Good",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+class PlaceCard extends StatelessWidget {
+  final String placeName;
+  final String status;
+  final String ppm;
+  final String percentage;
+  final Color statusColor;
+  final int peopleCount;
 
-  Widget _buildCO2Reading() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Row(
-              children: [
-                Text(
-                  "652",
+  const PlaceCard({
+    super.key,
+    required this.placeName,
+    required this.status,
+    required this.ppm,
+    required this.percentage,
+    required this.statusColor,
+    required this.peopleCount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  placeName,
                   style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.w300,
-                    color: kPrimaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(width: 8),
-                Column(
-                  children: [
-                    Container(
-                      width: 49,
-                      height: 24,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_drop_down,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "13%",
-                            style: const TextStyle(
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Container(
+                  width: 70,
+                  height: 24,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    //color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF47BA80),
+                        Color(0xFF42D588),
+                        Color(0xFF65D49C),
+                        Color(0xFF2DF28F),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Text(
+                    status,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    ppm,
+                    style: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.w300,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Column(
+                    children: [
+                      Container(
+                        width: 49,
+                        height: 24,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_drop_down,
+                              size: 20,
                               color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                            ),
+                            Text(
+                              percentage,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Text(
+                        'ppm',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      if (placeName == 'Home')
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: SizedBox(
+                            width: 36 + (4 - 1) * 18.0,
+                            height: 36,
+                            child: Stack(
+                              children: [
+                                for (int i = 1; i <= 3; i++)
+                                  Positioned(
+                                    left: (i - 1) * 18.0,
+                                    child: Container(
+                                      height: 39,
+                                      width: 39,
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                          'assets/images/person_$i.png',
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                Positioned(
+                                  left: (4 - 1) * 18.0,
+                                  child: Container(
+                                    height: 39,
+                                    width: 39,
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CircleAvatar(
+                                      backgroundColor: Color(0xFFD9D9D9),
+                                      child: Text(
+                                        '+$peopleCount',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                        )
+                      else
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: SizedBox(
+                            width: 36 + (6 - 1) * 18.0,
+                            height: 36,
+                            child: Stack(
+                              children: [
+                                for (int i = 4; i <= 8; i++)
+                                  Positioned(
+                                    left: (i - 4) * 18.0,
+                                    child: Container(
+                                      height: 39,
+                                      width: 39,
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                          'assets/images/person_$i.png',
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                Positioned(
+                                  left: (9 - 4) * 18.0,
+                                  child: Container(
+                                    height: 39,
+                                    width: 39,
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CircleAvatar(
+                                      backgroundColor: Color(0xFFD9D9D9),
+                                      child: Text(
+                                        '+$peopleCount',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                  InkWell(
+                    onTap: () {
+                      var route =
+                          placeName == 'Home'
+                              ? HomeDetailsScreen()
+                              : OfficeDetailsScreen();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => route),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.zero,
+                      child: Row(
+                        children: const [
+                          Text(
+                            'View Details',
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Icon(Icons.arrow_right, color: kPrimaryColor),
                         ],
                       ),
                     ),
-                    const Text(
-                      'ppm',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const Spacer(),
-            SizedBox(
-              width: 132,
-              child: Column(
-                children: [
-                  Icon(Icons.arrow_drop_down, color: kPrimaryColor),
-                  Row(
-                    spacing: 3,
-                    children: [
-                      Container(height: 7, width: 24, color: Color(0xFF7184FF)),
-                      Container(height: 7, width: 24, color: Color(0xFFFF5557)),
-                      Container(height: 7, width: 24, color: Color(0xFF2DF18F)),
-                      Container(height: 7, width: 24, color: Color(0xFFEBED4D)),
-                      Container(height: 7, width: 24, color: Color(0xFFFA9D5A)),
-                    ],
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildHistorySection() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'History',
-              style: TextStyle(
-                fontSize: 16,
-                color: kGreyTextColor,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Row(
-              children: [
-                const Text(
-                  'See all',
-                  style: TextStyle(
-                    color: Color(0xFFADADAD),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                const Icon(
-                  Icons.arrow_right_sharp,
-                  color: Colors.grey,
-                  size: 22,
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        SizedBox(height: 180, child: _buildHistoryChart()),
-      ],
-    );
-  }
-
-  Widget _buildHistoryChart() {
-    return LineChart(
-      LineChartData(
-        gridData: FlGridData(
-          show: true,
-          drawHorizontalLine: true,
-          drawVerticalLine: false,
-          horizontalInterval: 1,
-          getDrawingHorizontalLine: (value) {
-            return FlLine(color: Colors.grey.withOpacity(0.1), strokeWidth: 1);
-          },
-        ),
-        titlesData: FlTitlesData(
-          bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              interval: 1,
-              getTitlesWidget: (value, meta) {
-                final months = [
-                  'Sept',
-                  'Oct',
-                  'Nov',
-                  'Dec',
-                  'Jan',
-                  'Feb',
-                  'Mar',
-                  'Apr',
-                ];
-                final years = ['24', '24', '24', '24', '25', '25', '25', '25'];
-
-                if (value.toInt() > 0 && value.toInt() < months.length) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        months[value.toInt()],
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFFADADAD),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(height: 2),
-                      Text(
-                        years[value.toInt()],
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFFADADAD),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-              reservedSize: 36,
-            ),
-          ),
-          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        ),
-        borderData: FlBorderData(
-          show: true,
-          border: Border(
-            left: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1),
-            bottom: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1),
-            top: BorderSide.none,
-            right: BorderSide.none,
-          ),
-        ),
-        minX: 0,
-        maxX: 7,
-        minY: 1,
-        maxY: 7,
-        lineBarsData: [
-          LineChartBarData(
-            spots: const [
-              FlSpot(1, 3),
-              FlSpot(2, 4),
-              FlSpot(3, 5),
-              FlSpot(4, 4.4),
-              FlSpot(5, 4.4),
-              FlSpot(6, 4.7),
-              FlSpot(7, 2.3),
             ],
-            isCurved: true,
-            color: Color(0xFF2FED8E),
-            barWidth: 1,
-            dotData: FlDotData(
-              show: true,
-              getDotPainter: (spot, percent, barData, index) {
-                return FlDotCirclePainter(
-                  radius: 4,
-                  color: Colors.white,
-                  strokeWidth: 2,
-                  strokeColor: Color(0xFF2FED8E),
-                );
-              },
-            ),
-            belowBarData: BarAreaData(show: false),
           ),
-          ...[
-            FlSpot(1, 3),
-            FlSpot(2, 4),
-            FlSpot(3, 5),
-            FlSpot(4, 4.4),
-            FlSpot(5, 4.4),
-            FlSpot(6, 4.7),
-            FlSpot(7, 2.3),
-          ].map((spot) {
-            return LineChartBarData(
-              spots: [FlSpot(spot.x, 1), FlSpot(spot.x, spot.y - 0.2)],
-              isCurved: false,
-              barWidth: 1,
-              color: Color(0xFF2FED8E),
-              dotData: FlDotData(show: false),
-              belowBarData: BarAreaData(show: false),
-            );
-          }),
         ],
       ),
     );
+  }
+}
+
+class DiagonalBackgroundPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double topSplitX = size.width * 0.45;
+    final double bottomSplitX = size.width * 0.75;
+
+    final leftPaint = Paint()..color = Color(0xFFE8F6EE);
+
+    final leftPath =
+        Path()
+          ..moveTo(0, 0)
+          ..lineTo(topSplitX, 0)
+          ..lineTo(bottomSplitX, size.height)
+          ..lineTo(0, size.height)
+          ..close();
+
+    canvas.drawPath(leftPath, leftPaint);
+
+    final rightPaint = Paint()..color = Color(0xFFD4F9E5);
+
+    final rightPath =
+        Path()
+          ..moveTo(topSplitX, 0)
+          ..lineTo(size.width, 0)
+          ..lineTo(size.width, size.height)
+          ..lineTo(bottomSplitX, size.height)
+          ..close();
+
+    canvas.drawPath(rightPath, rightPaint);
   }
 
-  Widget _buildPersonsCard() {
-    return Container(
-      height: 150,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            'Persons',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF4D4D4D),
-            ),
-          ),
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: SizedBox(
-              width: 36 + (4 - 1) * 18.0,
-              height: 36,
-              child: Stack(
-                children: [
-                  for (int i = 1; i <= 3; i++)
-                    Positioned(
-                      left: (i - 1) * 18.0,
-                      child: Container(
-                        height: 39,
-                        width: 39,
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                        ),
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(
-                            'assets/images/person_$i.png',
-                          ),
-                        ),
-                      ),
-                    ),
-                  Positioned(
-                    left: (4 - 1) * 18.0,
-                    child: Container(
-                      height: 39,
-                      width: 39,
-                      padding: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: CircleAvatar(
-                        backgroundColor: Color(0xFFD9D9D9),
-                        child: Text(
-                          '+2',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildRoomsCard() {
-    return Container(
-      height: 150,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        gradient: LinearGradient(
-          colors: [Color(0xFF6Ec194), Color(0xFF9BF7C8)],
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            'Rooms',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
-          const Spacer(),
-          const Text(
-            '5',
-            style: TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              '2 of them requires action',
-              style: TextStyle(
-                color: kPrimaryColor,
-                fontWeight: FontWeight.w500,
-                fontSize: 10,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPlantsCard() {
-    return Container(
-      height: 150,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 5,
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Plants',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: kPrimaryColor,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Image.asset('assets/images/plants.png', width: 55, height: 55),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                gradient: LinearGradient(
-                  colors: [Color(0xFF6Ec194), Color(0xFF9BF7C8)],
-                ),
-              ),
-              child: const Text(
-                '43',
-                style: TextStyle(
-                  fontSize: 80,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

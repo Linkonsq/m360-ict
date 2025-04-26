@@ -1,19 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
-import 'package:m360_ict/screens/landing_screen.dart';
 import 'package:m360_ict/screens/send_otp_screen.dart';
 import 'package:m360_ict/screens/signup_screen.dart';
 import 'package:m360_ict/services/auth_service.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 

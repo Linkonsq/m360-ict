@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
-import 'package:m360_ict/screens/login_screen.dart';
+import 'package:m360_ict/screens/signin_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -150,7 +150,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
+                                builder: (context) => const SignInScreen(),
                               ),
                               (route) => false, // Clear all routes
                             );
