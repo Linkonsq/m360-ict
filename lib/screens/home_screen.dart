@@ -10,9 +10,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(
+            left: 24,
+            right: 24,
+            top: 16,
+            bottom: 16,
+          ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildHeader(),
               const SizedBox(height: 20),
@@ -85,7 +89,6 @@ class HomeScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            const SizedBox(width: 10),
             Row(
               children: [
                 Text(
@@ -204,7 +207,15 @@ class HomeScreen extends StatelessWidget {
   Widget _buildHistoryChart() {
     return LineChart(
       LineChartData(
-        gridData: FlGridData(show: false),
+        gridData: FlGridData(
+          show: true,
+          drawHorizontalLine: true,
+          drawVerticalLine: false,
+          horizontalInterval: 1,
+          getDrawingHorizontalLine: (value) {
+            return FlLine(color: Colors.grey.withOpacity(0.1), strokeWidth: 1);
+          },
+        ),
         titlesData: FlTitlesData(
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
@@ -249,7 +260,7 @@ class HomeScreen extends StatelessWidget {
                 }
                 return const SizedBox.shrink();
               },
-              reservedSize: 36, // Increased to accommodate two lines
+              reservedSize: 36,
             ),
           ),
           leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -267,7 +278,7 @@ class HomeScreen extends StatelessWidget {
         ),
         minX: 0,
         maxX: 7,
-        minY: 0,
+        minY: 1,
         maxY: 7,
         lineBarsData: [
           LineChartBarData(
@@ -275,28 +286,46 @@ class HomeScreen extends StatelessWidget {
               FlSpot(1, 3),
               FlSpot(2, 4),
               FlSpot(3, 5),
-              FlSpot(4, 4.2),
-              FlSpot(5, 4.2),
-              FlSpot(6, 4.8),
+              FlSpot(4, 4.4),
+              FlSpot(5, 4.4),
+              FlSpot(6, 4.7),
               FlSpot(7, 2.3),
             ],
             isCurved: true,
             color: kPrimaryColor,
             barWidth: 3,
-            isStrokeCapRound: true,
+            //isStrokeCapRound: true,
             dotData: FlDotData(
               show: true,
               getDotPainter: (spot, percent, barData, index) {
                 return FlDotCirclePainter(
                   radius: 4,
-                  color: Color(0xFF2FED8E),
+                  color: Colors.white,
                   strokeWidth: 2,
-                  strokeColor: Colors.white,
+                  strokeColor: Color(0xFF2FED8E),
                 );
               },
             ),
             belowBarData: BarAreaData(show: false),
           ),
+          ...[
+            FlSpot(1, 3),
+            FlSpot(2, 4),
+            FlSpot(3, 5),
+            FlSpot(4, 4.4),
+            FlSpot(5, 4.4),
+            FlSpot(6, 4.7),
+            FlSpot(7, 2.3),
+          ].map((spot) {
+            return LineChartBarData(
+              spots: [FlSpot(spot.x, 1), FlSpot(spot.x, spot.y - 0.2)],
+              isCurved: false,
+              barWidth: 1,
+              color: Color(0xFF2FED8E),
+              dotData: FlDotData(show: false),
+              belowBarData: BarAreaData(show: false),
+            );
+          }),
         ],
       ),
     );
