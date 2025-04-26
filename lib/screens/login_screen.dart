@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
 import 'package:m360_ict/screens/landing_screen.dart';
 import 'package:m360_ict/screens/send_otp_screen.dart';
 import 'package:m360_ict/screens/signup_screen.dart';
+import 'package:m360_ict/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,17 +14,35 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool rememberMe = false;
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  bool _isLoading = false;
+  bool _rememberMe = false;
   bool _obscureText = true;
 
-  void _loginUser() {
-    final email = _emailController.text;
-    final password = _passwordController.text;
+  Future<void> _loginUser() async {
+    setState(() => _isLoading = true);
 
-    debugPrint('Email: $email, Password: $password');
+    try {
+      User? user = await _auth.signInWithEmailAndPassword(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+      );
+
+      if (user != null) {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Login failed: ${e.toString()}')));
+    } finally {
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
@@ -156,14 +176,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   width: 24,
                                   height: 24,
                                   child: Checkbox(
-                                    value: rememberMe,
+                                    value: _rememberMe,
                                     activeColor: kPrimaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        rememberMe = value ?? false;
+                                        _rememberMe = value ?? false;
                                       });
                                     },
                                   ),
@@ -204,12 +224,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (_formKey.currentState!.validate()) {
                                 _loginUser();
                               }
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => const LandingScreen(),
-                              //   ),
-                              // );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: kPrimaryColor,
@@ -218,13 +232,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                            child: const Text(
-                              'Sign In',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
+                            child:
+                                _isLoading
+                                    ? CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
+                                    : const Text(
+                                      'Sign In',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
                           ),
                         ),
                         const SizedBox(height: 45),

@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:m360_ict/screens/landing_screen.dart';
+import 'package:m360_ict/screens/login_screen.dart';
+import 'package:m360_ict/screens/signup_screen.dart';
 import 'package:m360_ict/screens/splash_screen.dart';
+import 'package:m360_ict/services/auth_service.dart';
 
 // Define primary color constant
 const Color kPrimaryColor = Color(0xFF47BA80);
@@ -10,8 +16,9 @@ const Color kTitleTextColor = Color(0xFF1E1E1E);
 const Color kBoldTextColor = Color(0xFF000000);
 const Color kGreyTextColor = Color(0xFF838383);
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -44,10 +51,15 @@ class MyApp extends StatelessWidget {
             ),
             fontFamily: GoogleFonts.poppins().fontFamily,
           ),
-          home: const SplashScreen(),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => AuthWrapper(),
+            '/login': (context) => LoginScreen(),
+            '/register': (context) => SignUpScreen(),
+            '/home': (context) => LandingScreen(),
+          },
         );
       },
-      child: const SplashScreen(),
     );
   }
 
@@ -61,4 +73,47 @@ class MyApp extends StatelessWidget {
   //   ),
   //   home: const SplashScreen(),
   // );
+}
+
+class AuthWrapper extends StatefulWidget {
+  const AuthWrapper({super.key});
+
+  @override
+  State<AuthWrapper> createState() => _AuthWrapperState();
+}
+
+class _AuthWrapperState extends State<AuthWrapper> {
+  final AuthService _auth = AuthService();
+  bool _showSplash = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) {
+        setState(() => _showSplash = false);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_showSplash) {
+      return SplashScreen();
+    }
+
+    return StreamBuilder<User?>(
+      stream: _auth.authStateChanges,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          User? user = snapshot.data;
+          if (user == null) {
+            return LoginScreen();
+          }
+          return LandingScreen();
+        }
+        return SplashScreen();
+      },
+    );
+  }
 }
