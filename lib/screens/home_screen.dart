@@ -292,9 +292,8 @@ class HomeScreen extends StatelessWidget {
               FlSpot(7, 2.3),
             ],
             isCurved: true,
-            color: kPrimaryColor,
-            barWidth: 3,
-            //isStrokeCapRound: true,
+            color: Color(0xFF2FED8E),
+            barWidth: 1,
             dotData: FlDotData(
               show: true,
               getDotPainter: (spot, percent, barData, index) {
@@ -422,8 +421,13 @@ class HomeScreen extends StatelessWidget {
       height: 150,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: kPrimaryColor,
+        //color: kPrimaryColor,
         borderRadius: BorderRadius.circular(15),
+        gradient: LinearGradient(
+          colors: [Color(0xFF6Ec194), Color(0xFF9BF7C8)],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -446,20 +450,21 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          // Container(
-          //   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          //   decoration: BoxDecoration(
-          //     color: Colors.white,
-          //     borderRadius: BorderRadius.circular(20),
-          //   ),
-          //   child: const Text(
-          //     '2 of them requires action',
-          //     style: TextStyle(
-          //       color: Color(0xFF9EDEC6),
-          //       fontWeight: FontWeight.w500,
-          //     ),
-          //   ),
-          // ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: const Text(
+              '2 of them requires action',
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -467,9 +472,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildPlantsCard() {
     return Container(
-      //width: double.infinity,
       height: 150,
-      //padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -505,8 +508,12 @@ class HomeScreen extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(15),
+                gradient: LinearGradient(
+                  colors: [Color(0xFF6Ec194), Color(0xFF9BF7C8)],
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                ),
               ),
               child: const Text(
                 '43',
