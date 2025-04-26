@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
+import 'package:m360_ict/widgets/ppm_info.dart';
+import 'package:m360_ict/widgets/status_card.dart';
 
 class HomeDetailsScreen extends StatelessWidget {
   const HomeDetailsScreen({super.key});
@@ -67,32 +69,7 @@ class HomeDetailsScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(right: 8),
-          child: Container(
-            width: 70,
-            height: 24,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF47BA80),
-                  Color(0xFF42D588),
-                  Color(0xFF65D49C),
-                  Color(0xFF2DF28F),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Text(
-              "Good",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
+          child: StatusCard(text: 'Good'),
         ),
       ],
     );
@@ -103,57 +80,7 @@ class HomeDetailsScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            Row(
-              children: [
-                Text(
-                  "652",
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.w300,
-                    color: kPrimaryColor,
-                  ),
-                ),
-                SizedBox(width: 8),
-                Column(
-                  children: [
-                    Container(
-                      width: 49,
-                      height: 24,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_drop_down,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "13%",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Text(
-                      'ppm',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            PpmInfo(value: "652", percentage: "13%"),
             const Spacer(),
             SizedBox(
               width: 132,
