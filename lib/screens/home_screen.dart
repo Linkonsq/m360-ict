@@ -18,17 +18,16 @@ class HomeScreen extends StatelessWidget {
               _buildCO2Reading(),
               const SizedBox(height: 30),
               _buildHistorySection(),
-              const SizedBox(height: 30),
-              Expanded(
-                child: Row(
-                  children: [
-                    Expanded(child: _buildPersonsCard()),
-                    const SizedBox(width: 16),
-                    Expanded(child: _buildRoomsCard()),
-                  ],
-                ),
+              const SizedBox(height: 80),
+              Row(
+                children: [
+                  Expanded(child: _buildPersonsCard()),
+                  const SizedBox(width: 16),
+                  Expanded(child: _buildRoomsCard()),
+                ],
               ),
-              Expanded(child: _buildPlantsCard()),
+              const SizedBox(height: 30),
+              _buildPlantsCard(),
             ],
           ),
         ),
@@ -45,7 +44,7 @@ class HomeScreen extends StatelessWidget {
             Icon(Icons.arrow_back_ios, color: kGreyTextColor),
             const SizedBox(width: 8),
             Image.asset('assets/images/home.png', width: 28, height: 28),
-            const SizedBox(width: 8),
+            const SizedBox(width: 10),
             const Text(
               'Home',
               style: TextStyle(
@@ -242,7 +241,7 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.1),
@@ -262,60 +261,60 @@ class HomeScreen extends StatelessWidget {
               color: Color(0xFF4D4D4D),
             ),
           ),
-          const Spacer(),
-          SizedBox(
-            height: 40,
-            width: 130,
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 0,
-                  child: _buildPersonAvatar(Colors.green.withOpacity(0.2)),
-                ),
-                Positioned(
-                  left: 25, // Slightly overlapping
-                  child: _buildPersonAvatar(Colors.blue.withOpacity(0.2)),
-                ),
-                Positioned(
-                  left: 50, // Slightly overlapping
-                  child: _buildPersonAvatar(Colors.amber.withOpacity(0.2)),
-                ),
-                Positioned(
-                  left: 75, // Slightly overlapping
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        '+2',
-                        style: TextStyle(
+          SizedBox(height: 25),
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: SizedBox(
+              width: 36 + (4 - 1) * 18.0,
+              height: 36,
+              child: Stack(
+                children: [
+                  for (int i = 1; i <= 3; i++)
+                    Positioned(
+                      left: (i - 1) * 18.0,
+                      child: Container(
+                        height: 39,
+                        width: 39,
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
                           color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                          shape: BoxShape.circle,
+                        ),
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage(
+                            'assets/images/person_$i.png',
+                          ),
+                        ),
+                      ),
+                    ),
+                  Positioned(
+                    left: (4 - 1) * 18.0,
+                    child: Container(
+                      height: 39,
+                      width: 39,
+                      padding: EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: CircleAvatar(
+                        backgroundColor: Color(0xFFD9D9D9),
+                        child: Text(
+                          '+2',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildPersonAvatar(Color color) {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white, width: 2),
       ),
     );
   }
@@ -327,7 +326,7 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: kPrimaryColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -371,12 +370,12 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildPlantsCard() {
     return Container(
-      width: double.infinity,
+      //width: double.infinity,
       height: 150,
-      padding: const EdgeInsets.all(16),
+      //padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.1),
@@ -385,38 +384,42 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          const Text(
-            'Plants',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: kPrimaryColor,
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/plants.png', width: 55, height: 55),
-              const Spacer(),
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const Text(
-                  '43',
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Plants',
                   style: TextStyle(
-                    fontSize: 80,
+                    fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                    color: kPrimaryColor,
                   ),
                 ),
+                SizedBox(height: 10),
+                Image.asset('assets/images/plants.png', width: 55, height: 55),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(15),
               ),
-            ],
+              child: const Text(
+                '43',
+                style: TextStyle(
+                  fontSize: 80,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ],
       ),
