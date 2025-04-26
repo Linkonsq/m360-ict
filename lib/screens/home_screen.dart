@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _buildHeader(),
+              _buildHeader(context),
               const SizedBox(height: 20),
               _buildCO2Reading(),
               const SizedBox(height: 30),
@@ -40,13 +40,18 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            Image.asset('assets/images/arrow_back.png'),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Image.asset('assets/images/arrow_back.png'),
+            ),
             const SizedBox(width: 14),
             Image.asset('assets/images/home.png', width: 28, height: 28),
             const SizedBox(width: 14),
