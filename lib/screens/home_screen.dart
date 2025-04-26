@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
 
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
               _buildCO2Reading(),
               const SizedBox(height: 30),
               _buildHistorySection(),
-              const SizedBox(height: 80),
+              const SizedBox(height: 30),
               Row(
                 children: [
                   Expanded(child: _buildPersonsCard()),
@@ -41,10 +42,10 @@ class HomeScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.arrow_back_ios, color: kGreyTextColor),
-            const SizedBox(width: 8),
+            Image.asset('assets/images/arrow_back.png'),
+            const SizedBox(width: 14),
             Image.asset('assets/images/home.png', width: 28, height: 28),
-            const SizedBox(width: 10),
+            const SizedBox(width: 14),
             const Text(
               'Home',
               style: TextStyle(
@@ -83,7 +84,6 @@ class HomeScreen extends StatelessWidget {
     return Column(
       children: [
         Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const SizedBox(width: 10),
             Row(
@@ -139,45 +139,19 @@ class HomeScreen extends StatelessWidget {
             ),
             const Spacer(),
             SizedBox(
-              height: 10,
               width: 132,
-              child: Row(
-                spacing: 3,
+              child: Column(
                 children: [
-                  Expanded(
-                    child: Container(
-                      height: 7,
-                      width: 24,
-                      color: Color(0xFF7184FF),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 7,
-                      width: 24,
-                      color: Color(0xFFFF5557),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 7,
-                      width: 24,
-                      color: Color(0xFF2DF18F),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 7,
-                      width: 24,
-                      color: Color(0xFFEBED4D),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 7,
-                      width: 24,
-                      color: Color(0xFFFA9D5A),
-                    ),
+                  Icon(Icons.arrow_drop_down, color: kPrimaryColor),
+                  Row(
+                    spacing: 3,
+                    children: [
+                      Container(height: 7, width: 24, color: Color(0xFF7184FF)),
+                      Container(height: 7, width: 24, color: Color(0xFFFF5557)),
+                      Container(height: 7, width: 24, color: Color(0xFF2DF18F)),
+                      Container(height: 7, width: 24, color: Color(0xFFEBED4D)),
+                      Container(height: 7, width: 24, color: Color(0xFFFA9D5A)),
+                    ],
                   ),
                 ],
               ),
@@ -228,9 +202,103 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildHistoryChart() {
-    return CustomPaint(
-      size: const Size(double.infinity, 180),
-      painter: ChartPainter(),
+    return LineChart(
+      LineChartData(
+        gridData: FlGridData(show: false),
+        titlesData: FlTitlesData(
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              interval: 1,
+              getTitlesWidget: (value, meta) {
+                final months = [
+                  'Sept',
+                  'Oct',
+                  'Nov',
+                  'Dec',
+                  'Jan',
+                  'Feb',
+                  'Mar',
+                  'Apr',
+                ];
+                final years = ['24', '24', '24', '24', '25', '25', '25', '25'];
+
+                if (value.toInt() > 0 && value.toInt() < months.length) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        months[value.toInt()],
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFFADADAD),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Text(
+                        years[value.toInt()],
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFFADADAD),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+              reservedSize: 36, // Increased to accommodate two lines
+            ),
+          ),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        ),
+        borderData: FlBorderData(
+          show: true,
+          border: Border(
+            left: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1),
+            bottom: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1),
+            top: BorderSide.none,
+            right: BorderSide.none,
+          ),
+        ),
+        minX: 0,
+        maxX: 7,
+        minY: 0,
+        maxY: 7,
+        lineBarsData: [
+          LineChartBarData(
+            spots: const [
+              FlSpot(1, 3),
+              FlSpot(2, 4),
+              FlSpot(3, 5),
+              FlSpot(4, 4.2),
+              FlSpot(5, 4.2),
+              FlSpot(6, 4.8),
+              FlSpot(7, 2.3),
+            ],
+            isCurved: true,
+            color: kPrimaryColor,
+            barWidth: 3,
+            isStrokeCapRound: true,
+            dotData: FlDotData(
+              show: true,
+              getDotPainter: (spot, percent, barData, index) {
+                return FlDotCirclePainter(
+                  radius: 4,
+                  color: Color(0xFF2FED8E),
+                  strokeWidth: 2,
+                  strokeColor: Colors.white,
+                );
+              },
+            ),
+            belowBarData: BarAreaData(show: false),
+          ),
+        ],
+      ),
     );
   }
 
@@ -425,115 +493,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class ChartPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint =
-        Paint()
-          ..color = const Color(0xFF9EDEC6)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2;
-
-    final dotPaint =
-        Paint()
-          ..color = const Color(0xFF9EDEC6)
-          ..style = PaintingStyle.fill;
-
-    final path = Path();
-
-    // Define chart data points (normalized between 0 and 1)
-    List<Offset> points = [
-      Offset(0, 0.7),
-      Offset(size.width / 6, 0.5),
-      Offset(size.width / 3, 0.2),
-      Offset(size.width / 2, 0.1),
-      Offset(2 * size.width / 3, 0.3),
-      Offset(5 * size.width / 6, 0.2),
-      Offset(size.width, 0.85),
-    ];
-
-    // Create the path from points
-    path.moveTo(points[0].dx, size.height * points[0].dy);
-    for (int i = 1; i < points.length; i++) {
-      final p0 = i > 0 ? points[i - 1] : points[0];
-      final p1 = points[i];
-
-      // Calculate control points for the curve
-      final cp1x = p0.dx + (p1.dx - p0.dx) / 2;
-      final cp1y = p0.dy;
-      final cp2x = p0.dx + (p1.dx - p0.dx) / 2;
-      final cp2y = p1.dy;
-
-      path.cubicTo(
-        cp1x,
-        size.height * cp1y,
-        cp2x,
-        size.height * cp2y,
-        p1.dx,
-        size.height * p1.dy,
-      );
-    }
-
-    // Draw the path
-    canvas.drawPath(path, paint);
-
-    // Draw dots at each data point
-    for (var point in points) {
-      canvas.drawCircle(Offset(point.dx, size.height * point.dy), 5, dotPaint);
-
-      // Draw vertical lines
-      final linePaint =
-          Paint()
-            ..color = const Color(0xFF9EDEC6).withOpacity(0.3)
-            ..strokeWidth = 1;
-
-      canvas.drawLine(
-        Offset(point.dx, size.height * point.dy),
-        Offset(point.dx, size.height),
-        linePaint,
-      );
-    }
-
-    // Draw x-axis labels
-    const months = [
-      'Oct\n24',
-      'Nov\n24',
-      'Dec\n24',
-      'Jan\n25',
-      'Feb\n25',
-      'Mar\n25',
-      'Apr\n25',
-    ];
-    final textStyle = TextStyle(color: Colors.grey[400], fontSize: 12);
-    final textPainter = TextPainter(
-      textDirection: TextDirection.ltr,
-      textAlign: TextAlign.center,
-    );
-
-    for (int i = 0; i < months.length; i++) {
-      textPainter.text = TextSpan(text: months[i], style: textStyle);
-      textPainter.layout(minWidth: 0, maxWidth: size.width / 7);
-      final xPos = (i * size.width / 6);
-      textPainter.paint(
-        canvas,
-        Offset(xPos - textPainter.width / 2, size.height + 5),
-      );
-    }
-
-    // Draw horizontal grid lines
-    final gridPaint =
-        Paint()
-          ..color = Colors.grey[300]!
-          ..strokeWidth = 0.5;
-
-    for (int i = 1; i <= 4; i++) {
-      double y = (i * size.height / 5);
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), gridPaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
