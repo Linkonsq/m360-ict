@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
+import 'package:m360_ict/screens/carbon_emission_screen.dart';
 
 class OfficeScreen extends StatefulWidget {
   const OfficeScreen({super.key});
@@ -139,7 +140,12 @@ class _OfficeScreenState extends State<OfficeScreen> {
                 height: 42,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Calculate carbon emission
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CarbonEmissionScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kPrimaryColor,
