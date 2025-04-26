@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
 import 'package:m360_ict/screens/home_screen.dart';
+import 'package:m360_ict/screens/office_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -374,11 +375,11 @@ class PlaceCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
+                      var route =
+                          placeName == 'Home' ? HomeScreen() : OfficeScreen();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const HomeScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => route),
                       );
                     },
                     child: Padding(
