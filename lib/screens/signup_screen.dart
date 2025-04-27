@@ -121,43 +121,56 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ],
                         ),
 
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 20),
 
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.grey,
-                                width: 1.0,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Phone Number',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
-                          child: InternationalPhoneNumberInput(
-                            onInputChanged: (PhoneNumber number) {},
-                            selectorConfig: SelectorConfig(
-                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                              useBottomSheetSafeArea: true,
-                            ),
-                            selectorTextStyle: TextStyle(
-                              color: Color(0xFFD6D6D6),
-                            ),
-                            spaceBetweenSelectorAndTextField: 0.0,
-                            inputDecoration: InputDecoration(
-                              contentPadding: EdgeInsets.only(bottom: 14),
-                              border: InputBorder.none,
-                              hintText: '17XXXXXXXX',
-                              hintStyle: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFFD6D6D6),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0,
+                                  ),
+                                ),
+                              ),
+                              child: InternationalPhoneNumberInput(
+                                onInputChanged: (PhoneNumber number) {},
+                                selectorConfig: SelectorConfig(
+                                  selectorType:
+                                      PhoneInputSelectorType.BOTTOM_SHEET,
+                                  useBottomSheetSafeArea: true,
+                                ),
+                                selectorTextStyle: TextStyle(
+                                  color: Color(0xFFD6D6D6),
+                                ),
+                                spaceBetweenSelectorAndTextField: 0.0,
+                                inputDecoration: InputDecoration(
+                                  contentPadding: EdgeInsets.only(bottom: 14),
+                                  border: InputBorder.none,
+                                  hintText: '17XXXXXXXX',
+                                  hintStyle: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xFFD6D6D6),
+                                  ),
+                                ),
+                                initialValue: number,
+                                textFieldController: _phoneController,
+                                inputBorder: InputBorder.none,
+                                keyboardType: TextInputType.number,
+                                ignoreBlank: true,
                               ),
                             ),
-                            initialValue: number,
-                            textFieldController: _phoneController,
-                            inputBorder: InputBorder.none,
-                            keyboardType: TextInputType.number,
-                            ignoreBlank: true,
-                          ),
+                          ],
                         ),
                         const SizedBox(height: 20),
 
