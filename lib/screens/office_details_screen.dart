@@ -40,7 +40,6 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
           ),
           child: Column(
             children: [
-              // Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -64,7 +63,9 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
                       height: 28,
                     ),
                   ),
+
                   const SizedBox(width: 16),
+
                   Container(
                     decoration: BoxDecoration(
                       border: Border(
@@ -82,8 +83,9 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 40),
-              // Input fields
+
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -134,7 +136,6 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
                 ),
               ),
 
-              // Calculate button
               SizedBox(
                 width: double.infinity,
                 height: 42,
@@ -180,7 +181,6 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         children: [
-          // Green circle icon
           Container(
             width: 19,
             height: 19,
@@ -189,7 +189,9 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
               color: kPrimaryColor,
             ),
           ),
+
           const SizedBox(width: 12),
+
           Expanded(
             child: Row(
               children: [
@@ -213,7 +215,6 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
             ),
           ),
 
-          // Minus button
           Container(
             width: 22,
             height: 22,
@@ -236,8 +237,8 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
               padding: EdgeInsets.zero,
             ),
           ),
-          const SizedBox(width: 12),
-          // Value
+
+          const SizedBox(width: 2),
           SizedBox(
             width: 60,
             child: Center(
@@ -250,8 +251,8 @@ class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
               ),
             ),
           ),
-          const SizedBox(width: 12),
-          // Plus button
+
+          const SizedBox(width: 2),
           Container(
             width: 22,
             height: 22,
