@@ -77,7 +77,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
+
                         const SizedBox(height: 8),
+
                         const Text(
                           'Let\'s save environment together',
                           style: TextStyle(
@@ -121,7 +123,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 20),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -136,19 +140,15 @@ class _SignInScreenState extends State<SignInScreen> {
                               controller: _passwordController,
                               obscureText: _obscureText,
                               decoration: InputDecoration(
-                                hintText: '••••••••••',
+                                hintText: '**********',
                                 hintStyle: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xFFD6D6D6),
                                 ),
                                 suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscureText
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.grey,
-                                  ),
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  icon: Image.asset('assets/images/eye.png'),
                                   onPressed: () {
                                     setState(() {
                                       _obscureText = !_obscureText;
@@ -165,7 +165,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 16),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -214,10 +216,12 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 24),
+
                         SizedBox(
                           width: double.infinity,
-                          height: 50,
+                          height: 42,
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
@@ -256,7 +260,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ),
                         ),
+
                         const SizedBox(height: 45),
+
                         Row(
                           spacing: 10,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -320,7 +326,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 60),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
@@ -328,8 +336,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           'Powered by ',
                           style: TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w400,
                             color: Color(0xFFADADAD),
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                         Text(

@@ -27,14 +27,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -46,44 +38,42 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 20),
+
                       const Text(
                         'Reset Password',
                         style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 40),
 
-                      // New Password
+                      const SizedBox(height: 140),
+
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
                             'New Password',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
+                              color: kBoldTextColor,
                             ),
                           ),
-                          const SizedBox(height: 8),
                           TextField(
                             controller: _newPasswordController,
                             obscureText: _obscureNewPassword,
                             decoration: InputDecoration(
-                              hintText: '••••••••••',
-                              hintStyle: TextStyle(color: Colors.grey[400]),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 16,
+                              hintText: '**********',
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFFD6D6D6),
                               ),
                               suffixIcon: IconButton(
-                                icon: Icon(
-                                  _obscureNewPassword
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: Colors.grey,
-                                ),
+                                padding: EdgeInsets.only(bottom: 10),
+                                icon: Image.asset('assets/images/eye.png'),
                                 onPressed: () {
                                   setState(() {
                                     _obscureNewPassword = !_obscureNewPassword;
@@ -97,7 +87,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
                       const SizedBox(height: 20),
 
-                      // Confirm Password
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -106,26 +95,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
+                              color: kBoldTextColor,
                             ),
                           ),
-                          const SizedBox(height: 8),
                           TextField(
                             controller: _confirmPasswordController,
                             obscureText: _obscureConfirmPassword,
                             decoration: InputDecoration(
-                              hintText: '••••••••••',
-                              hintStyle: TextStyle(color: Colors.grey[400]),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 16,
+                              hintText: '**********',
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFFD6D6D6),
                               ),
                               suffixIcon: IconButton(
-                                icon: Icon(
-                                  _obscureConfirmPassword
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: Colors.grey,
-                                ),
+                                padding: EdgeInsets.only(bottom: 10),
+                                icon: Image.asset('assets/images/eye.png'),
                                 onPressed: () {
                                   setState(() {
                                     _obscureConfirmPassword =
@@ -138,12 +123,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         ],
                       ),
 
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 100),
 
-                      // Reset Password button
                       SizedBox(
                         width: double.infinity,
-                        height: 50,
+                        height: 42,
                         child: ElevatedButton(
                           onPressed: () {
                             // Navigate to login screen after password reset
@@ -159,7 +143,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             backgroundColor: kPrimaryColor,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                           child: const Text(
@@ -184,7 +168,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   children: const [
                     Text(
                       'Powered by ',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFFADADAD),
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                     Text(
                       'M360 ICT',

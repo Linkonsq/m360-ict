@@ -92,7 +92,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
+
                         const SizedBox(height: 30),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -122,7 +124,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 20),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -174,7 +178,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 20),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -210,7 +216,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 20),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -225,19 +233,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: _passwordController,
                               obscureText: _obscurePassword,
                               decoration: InputDecoration(
-                                hintText: '••••••••••',
+                                hintText: '**********',
                                 hintStyle: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xFFD6D6D6),
                                 ),
                                 suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscurePassword
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.grey,
-                                  ),
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  icon: Image.asset('assets/images/eye.png'),
                                   onPressed: () {
                                     setState(() {
                                       _obscurePassword = !_obscurePassword;
@@ -257,7 +261,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 20),
+
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -272,19 +278,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               controller: _confirmPasswordController,
                               obscureText: _obscureConfirmPassword,
                               decoration: InputDecoration(
-                                hintText: '••••••••••',
+                                hintText: '**********',
                                 hintStyle: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xFFD6D6D6),
                                 ),
                                 suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscureConfirmPassword
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.grey,
-                                  ),
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  icon: Image.asset('assets/images/eye.png'),
                                   onPressed: () {
                                     setState(() {
                                       _obscureConfirmPassword =
@@ -304,10 +306,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 30),
+
                         SizedBox(
                           width: double.infinity,
-                          height: 50,
+                          height: 42,
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
@@ -318,7 +322,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               backgroundColor: kPrimaryColor,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                             child:
@@ -338,7 +342,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                         const SizedBox(height: 24),
 
-                        // Or sign up with
                         Center(
                           child: Text(
                             'Or Sign Up with',
@@ -352,7 +355,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                         const SizedBox(height: 24),
 
-                        // Social login buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -426,8 +428,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             'Powered by ',
                             style: TextStyle(
                               fontSize: 12,
-                              fontWeight: FontWeight.w400,
                               color: Color(0xFFADADAD),
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                           Text(
