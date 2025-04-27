@@ -16,7 +16,7 @@ A Flutter application built from a Figma design, featuring **10 screens** with *
 ## **⚙️ Installation**  
 **Clone the repo**  
    ```sh
-   git clone https://github.com/your-username/repo-name.git
+   git clone https://github.com/Linkonsq/m360-ict/tree/main
    cd repo-name
    flutter pub get
    flutter run
