@@ -22,19 +22,30 @@ class HomeDetailsScreen extends StatelessWidget {
             children: [
               _buildHeader(context),
               const SizedBox(height: 20),
-              _buildCO2Reading(),
-              const SizedBox(height: 20),
-              _buildHistorySection(),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(child: _buildPersonsCard()),
-                  const SizedBox(width: 16),
-                  Expanded(child: _buildRoomsCard()),
-                ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _buildCO2Reading(),
+                      const SizedBox(height: 20),
+                      _buildHistorySection(),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(child: _buildPersonsCard()),
+                          const SizedBox(width: 16),
+                          Expanded(child: _buildRoomsCard()),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      _buildPlantsCard(),
+                      const SizedBox(
+                        height: 20,
+                      ), // Add bottom padding for scrolling
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 30),
-              _buildPlantsCard(),
             ],
           ),
         ),
