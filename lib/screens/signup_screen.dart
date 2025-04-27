@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:m360_ict/main.dart';
 import 'package:m360_ict/screens/signin_screen.dart';
 import 'package:m360_ict/services/auth_service.dart';
@@ -25,6 +26,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+
+  String initialCountry = 'BGD';
+  PhoneNumber number = PhoneNumber(isoCode: 'BGD');
 
   Future<void> _signUpUser() async {
     setState(() => _isLoading = true);
@@ -125,60 +129,105 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ],
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
 
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Phone Number',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey,
+                                width: 1.0,
                               ),
                             ),
-                            const SizedBox(height: 8),
-                            TextField(
-                              controller: _phoneController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                hintText: '17XXXXXXX',
-                                prefixIcon: Container(
-                                  margin: const EdgeInsets.only(right: 8),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/bangladesh_flag.png',
-                                        width: 24,
-                                        height: 16,
-                                        errorBuilder: (
-                                          context,
-                                          error,
-                                          stackTrace,
-                                        ) {
-                                          return const Text('🇧🇩');
-                                        },
-                                      ),
-                                      const SizedBox(width: 4),
-                                      const Text('+880'),
-                                    ],
-                                  ),
-                                ),
-                                hintStyle: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xFFD6D6D6),
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 16,
-                                ),
+                          ),
+                          child: InternationalPhoneNumberInput(
+                            onInputChanged: (PhoneNumber number) {},
+                            selectorConfig: SelectorConfig(
+                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                              useBottomSheetSafeArea: true,
+                            ),
+                            selectorTextStyle: TextStyle(
+                              color: Color(0xFFD6D6D6),
+                            ),
+                            spaceBetweenSelectorAndTextField: 0.0,
+                            inputDecoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12,
+                              ),
+                              border: InputBorder.none,
+                              hintText: '17XXXXXXXX',
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFFD6D6D6),
                               ),
                             ),
-                          ],
+                            initialValue: number,
+                            textFieldController: _phoneController,
+                            inputBorder: InputBorder.none,
+                            keyboardType: TextInputType.number,
+                            ignoreBlank: true,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Please enter your phone number';
+                            //   }
+                            //
+                            //   return null;
+                            // },
+                          ),
                         ),
 
+                        // Column(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     const Text(
+                        //       'Phone Number',
+                        //       style: TextStyle(
+                        //         fontSize: 12,
+                        //         fontWeight: FontWeight.w500,
+                        //       ),
+                        //     ),
+                        //     const SizedBox(height: 8),
+                        //     TextField(
+                        //       controller: _phoneController,
+                        //       keyboardType: TextInputType.phone,
+                        //       decoration: InputDecoration(
+                        //         hintText: '17XXXXXXX',
+                        //         prefixIcon: Container(
+                        //           margin: const EdgeInsets.only(right: 8),
+                        //           child: Row(
+                        //             mainAxisSize: MainAxisSize.min,
+                        //             children: [
+                        //               Image.asset(
+                        //                 'assets/images/bangladesh_flag.png',
+                        //                 width: 24,
+                        //                 height: 16,
+                        //                 errorBuilder: (
+                        //                   context,
+                        //                   error,
+                        //                   stackTrace,
+                        //                 ) {
+                        //                   return const Text('🇧🇩');
+                        //                 },
+                        //               ),
+                        //               const SizedBox(width: 4),
+                        //               const Text('+880'),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //         hintStyle: TextStyle(
+                        //           fontSize: 16,
+                        //           fontWeight: FontWeight.w400,
+                        //           color: Color(0xFFD6D6D6),
+                        //         ),
+                        //         contentPadding: const EdgeInsets.symmetric(
+                        //           horizontal: 16,
+                        //           vertical: 16,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(height: 20),
 
                         Column(
