@@ -1,5 +1,4 @@
-# **Project Name**  
-M360 ICT
+# **M360 ICT**  
 
 ## **🎯 Project Overview**  
 A Flutter application built from a Figma design, featuring **10 screens** with **Firebase Authentication** (Email/Password Sign In & Sign Up).  
@@ -15,7 +14,7 @@ A Flutter application built from a Figma design, featuring **10 screens** with *
 
 
 ## **⚙️ Installation**  
-1. **Clone the repo**  
+**Clone the repo**  
    ```sh
    git clone https://github.com/your-username/repo-name.git
    cd repo-name
