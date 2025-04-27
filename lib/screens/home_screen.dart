@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Top card with user info
           SizedBox(
             height: 206,
             child: ClipRRect(
@@ -34,12 +33,13 @@ class HomeScreen extends StatelessWidget {
                     size: const Size(double.infinity, double.infinity),
                     painter: DiagonalBackgroundPainter(),
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,6 @@ class HomeScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),
-                              const SizedBox(height: 5),
                               const Text(
                                 "Ahmed Ariyan",
                                 style: TextStyle(
@@ -61,63 +60,68 @@ class HomeScreen extends StatelessWidget {
                                   color: kTitleTextColor,
                                 ),
                               ),
-                              //const SizedBox(height: 50),
-                              RichText(
-                                text: TextSpan(
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: kGreyTextColor,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                  children: [
-                                    const TextSpan(text: "You are in a "),
-                                    TextSpan(
-                                      text: "healthy",
-                                      style: TextStyle(
-                                        color: kPrimaryColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const TextSpan(text: " environment"),
-                                  ],
-                                ),
-                              ),
                             ],
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: SizedBox(
-                            height: 97,
-                            width: 97,
-                            child: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                'assets/images/profile.png',
+
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              height: 97,
+                              width: 97,
+                              child: CircleAvatar(
+                                backgroundImage: AssetImage(
+                                  'assets/images/profile.png',
+                                ),
                               ),
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+
+                  Positioned(
+                    bottom: 25,
+                    left: 20,
+                    child: RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: kGreyTextColor,
+                          fontWeight: FontWeight.w300,
+                        ),
+                        children: [
+                          const TextSpan(text: "You are in a "),
+                          TextSpan(
+                            text: "healthy",
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const TextSpan(text: " environment"),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),
             ),
           ),
+
           const SizedBox(height: 24),
 
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('My Places', style: TextStyle(fontSize: 18)),
                 const SizedBox(height: 16),
 
-                // Home Card
                 PlaceCard(
                   placeName: 'Home',
                   status: 'Good',
@@ -126,9 +130,9 @@ class HomeScreen extends StatelessWidget {
                   statusColor: Colors.green,
                   peopleCount: 2,
                 ),
+
                 const SizedBox(height: 16),
 
-                // Office Card
                 PlaceCard(
                   placeName: 'Office',
                   status: 'Healthy',
@@ -191,7 +195,9 @@ class PlaceCard extends StatelessWidget {
               ),
             ],
           ),
+
           const SizedBox(height: 20),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
