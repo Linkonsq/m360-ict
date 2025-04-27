@@ -23,9 +23,9 @@ class HomeDetailsScreen extends StatelessWidget {
               _buildHeader(context),
               const SizedBox(height: 20),
               _buildCO2Reading(),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               _buildHistorySection(),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(child: _buildPersonsCard()),
@@ -399,6 +399,8 @@ class HomeDetailsScreen extends StatelessWidget {
             ),
             child: const Text(
               '2 of them requires action',
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.w500,
