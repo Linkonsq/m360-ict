@@ -26,9 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
-
-  String initialCountry = 'BGD';
-  PhoneNumber number = PhoneNumber(isoCode: 'BGD');
+  PhoneNumber number = PhoneNumber(isoCode: 'BD');
 
   Future<void> _signUpUser() async {
     setState(() => _isLoading = true);
@@ -119,12 +117,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   color: Color(0xFFD6D6D6),
                                 ),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your name';
-                                }
-                                return null;
-                              },
                             ),
                           ],
                         ),
@@ -151,9 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             spaceBetweenSelectorAndTextField: 0.0,
                             inputDecoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 12,
-                              ),
+                              contentPadding: EdgeInsets.only(bottom: 14),
                               border: InputBorder.none,
                               hintText: '17XXXXXXXX',
                               hintStyle: TextStyle(
@@ -167,67 +157,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             inputBorder: InputBorder.none,
                             keyboardType: TextInputType.number,
                             ignoreBlank: true,
-                            // validator: (value) {
-                            //   if (value == null || value.isEmpty) {
-                            //     return 'Please enter your phone number';
-                            //   }
-                            //
-                            //   return null;
-                            // },
                           ),
                         ),
-
-                        // Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     const Text(
-                        //       'Phone Number',
-                        //       style: TextStyle(
-                        //         fontSize: 12,
-                        //         fontWeight: FontWeight.w500,
-                        //       ),
-                        //     ),
-                        //     const SizedBox(height: 8),
-                        //     TextField(
-                        //       controller: _phoneController,
-                        //       keyboardType: TextInputType.phone,
-                        //       decoration: InputDecoration(
-                        //         hintText: '17XXXXXXX',
-                        //         prefixIcon: Container(
-                        //           margin: const EdgeInsets.only(right: 8),
-                        //           child: Row(
-                        //             mainAxisSize: MainAxisSize.min,
-                        //             children: [
-                        //               Image.asset(
-                        //                 'assets/images/bangladesh_flag.png',
-                        //                 width: 24,
-                        //                 height: 16,
-                        //                 errorBuilder: (
-                        //                   context,
-                        //                   error,
-                        //                   stackTrace,
-                        //                 ) {
-                        //                   return const Text('🇧🇩');
-                        //                 },
-                        //               ),
-                        //               const SizedBox(width: 4),
-                        //               const Text('+880'),
-                        //             ],
-                        //           ),
-                        //         ),
-                        //         hintStyle: TextStyle(
-                        //           fontSize: 16,
-                        //           fontWeight: FontWeight.w400,
-                        //           color: Color(0xFFD6D6D6),
-                        //         ),
-                        //         contentPadding: const EdgeInsets.symmetric(
-                        //           horizontal: 16,
-                        //           vertical: 16,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                         const SizedBox(height: 20),
 
                         Column(
