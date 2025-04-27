@@ -86,13 +86,13 @@ class HomeDetailsScreen extends StatelessWidget {
               width: 132,
               child: Column(
                 children: [
-                  Icon(Icons.arrow_drop_down, color: kPrimaryColor),
+                  Icon(Icons.arrow_drop_down, color: Color(0xFF2DF28F)),
                   Row(
                     spacing: 3,
                     children: [
                       Container(height: 7, width: 24, color: Color(0xFF7184FF)),
                       Container(height: 7, width: 24, color: Color(0xFFFF5557)),
-                      Container(height: 7, width: 24, color: Color(0xFF2DF18F)),
+                      Container(height: 7, width: 24, color: Color(0xFF2DF28F)),
                       Container(height: 7, width: 24, color: Color(0xFFEBED4D)),
                       Container(height: 7, width: 24, color: Color(0xFFFA9D5A)),
                     ],
@@ -146,6 +146,32 @@ class HomeDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildHistoryChart() {
+    const spots = [
+      FlSpot(0, 2.7),
+      FlSpot(1, 3.2),
+      FlSpot(2, 4.4),
+      FlSpot(3, 5.0),
+      FlSpot(4, 4.4),
+      FlSpot(5, 4.4),
+      FlSpot(6, 4.7),
+      FlSpot(7, 2.5),
+    ];
+
+    final verticalLines = <LineChartBarData>[];
+    for (int i = 1; i < spots.length; i++) {
+      verticalLines.add(
+        LineChartBarData(
+          spots: [FlSpot(spots[i].x, 0), FlSpot(spots[i].x, spots[i].y - 0.2)],
+          isCurved: false,
+          color: Color(0xFF2FED8E).withOpacity(0.5),
+          barWidth: 1,
+          dotData: FlDotData(show: false),
+          belowBarData: BarAreaData(show: false),
+          isStrokeCapRound: false,
+        ),
+      );
+    }
+
     return LineChart(
       LineChartData(
         gridData: FlGridData(
@@ -164,7 +190,7 @@ class HomeDetailsScreen extends StatelessWidget {
               interval: 1,
               getTitlesWidget: (value, meta) {
                 final months = [
-                  'Sept',
+                  '',
                   'Oct',
                   'Nov',
                   'Dec',
@@ -173,9 +199,9 @@ class HomeDetailsScreen extends StatelessWidget {
                   'Mar',
                   'Apr',
                 ];
-                final years = ['24', '24', '24', '24', '25', '25', '25', '25'];
+                final days = ['', '24', '24', '24', '25', '25', '25', '25'];
 
-                if (value.toInt() > 0 && value.toInt() < months.length) {
+                if (value.toInt() >= 0 && value.toInt() < months.length) {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -189,7 +215,7 @@ class HomeDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 2),
                       Text(
-                        years[value.toInt()],
+                        days[value.toInt()],
                         style: TextStyle(
                           fontSize: 12,
                           color: Color(0xFFADADAD),
@@ -211,33 +237,27 @@ class HomeDetailsScreen extends StatelessWidget {
         borderData: FlBorderData(
           show: true,
           border: Border(
-            left: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1),
-            bottom: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1),
+            left: BorderSide(color: Colors.grey.withOpacity(0.1), width: 1),
+            bottom: BorderSide(color: Colors.grey.withOpacity(0.1), width: 1),
             top: BorderSide.none,
             right: BorderSide.none,
           ),
         ),
         minX: 0,
         maxX: 7,
-        minY: 1,
-        maxY: 7,
+        minY: 0,
+        maxY: 6,
         lineBarsData: [
           LineChartBarData(
-            spots: const [
-              FlSpot(0, 2.5),
-              FlSpot(1, 3),
-              FlSpot(2, 4),
-              FlSpot(3, 5),
-              FlSpot(4, 4.4),
-              FlSpot(5, 4.4),
-              FlSpot(6, 4.7),
-              FlSpot(7, 2.3),
-            ],
+            spots: spots,
             isCurved: true,
             color: Color(0xFF2FED8E),
-            barWidth: 1,
+            barWidth: 2,
             dotData: FlDotData(
               show: true,
+              checkToShowDot: (spot, barData) {
+                return spot.x >= 1;
+              },
               getDotPainter: (spot, percent, barData, index) {
                 return FlDotCirclePainter(
                   radius: 4,
@@ -249,25 +269,9 @@ class HomeDetailsScreen extends StatelessWidget {
             ),
             belowBarData: BarAreaData(show: false),
           ),
-          ...[
-            FlSpot(1, 3),
-            FlSpot(2, 4),
-            FlSpot(3, 5),
-            FlSpot(4, 4.4),
-            FlSpot(5, 4.4),
-            FlSpot(6, 4.7),
-            FlSpot(7, 2.3),
-          ].map((spot) {
-            return LineChartBarData(
-              spots: [FlSpot(spot.x, 1), FlSpot(spot.x, spot.y - 0.2)],
-              isCurved: false,
-              barWidth: 1,
-              color: Color(0xFF2FED8E),
-              dotData: FlDotData(show: false),
-              belowBarData: BarAreaData(show: false),
-            );
-          }),
+          ...verticalLines,
         ],
+        lineTouchData: LineTouchData(enabled: false),
       ),
     );
   }
