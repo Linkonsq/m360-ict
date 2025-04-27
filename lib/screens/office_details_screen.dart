@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:m360_ict/main.dart';
 import 'package:m360_ict/screens/carbon_emission_screen.dart';
 
-class OfficeScreen extends StatefulWidget {
-  const OfficeScreen({super.key});
+class OfficeDetailsScreen extends StatefulWidget {
+  const OfficeDetailsScreen({super.key});
 
   @override
-  State<OfficeScreen> createState() => _OfficeScreenState();
+  State<OfficeDetailsScreen> createState() => _OfficeDetailsScreenState();
 }
 
-class _OfficeScreenState extends State<OfficeScreen> {
+class _OfficeDetailsScreenState extends State<OfficeDetailsScreen> {
   int people = 52;
   int rooms = 7;
   int area = 3700;

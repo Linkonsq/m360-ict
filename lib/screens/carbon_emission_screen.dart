@@ -7,45 +7,41 @@ class CarbonEmissionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset('assets/images/arrow_back.png'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: Image.asset('assets/images/arrow_back.png'),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Column(
-                children: [
-                  RichText(
-                    text: const TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '1300',
-                          style: TextStyle(
-                            fontSize: 48,
-                            fontWeight: FontWeight.w300,
-                            color: Color(0xFFFF5557),
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' ppm',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                            color: Color(0xFFFF5557),
-                          ),
-                        ),
-                      ],
+              RichText(
+                text: const TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '1300',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFFFF5557),
+                      ),
                     ),
-                  ),
-                ],
+                    TextSpan(
+                      text: ' ppm',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xFFFF5557),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               Column(

@@ -34,21 +34,24 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 20),
+
                       const Text(
                         'Send OTP',
                         style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 8),
                       const Text(
                         'Recover your account in easy steps',
-                        style: TextStyle(fontSize: 16, color: Colors.black87),
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      const SizedBox(height: 40),
 
-                      // Email field
+                      const SizedBox(height: 140),
+
                       const Text(
                         'Email',
                         style: TextStyle(
@@ -56,29 +59,26 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 8),
                       TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           hintText: 'user@example.com',
-                          hintStyle: TextStyle(color: Colors.grey[400]),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFFD6D6D6),
                           ),
                         ),
                       ),
 
-                      const SizedBox(height: 40),
+                      const SizedBox(height: 140),
 
-                      // Send OTP button
                       SizedBox(
                         width: double.infinity,
-                        height: 50,
+                        height: 42,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigate to verify OTP screen
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -90,7 +90,7 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
                             backgroundColor: kPrimaryColor,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                           child: const Text(
@@ -115,7 +115,11 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
                   children: const [
                     Text(
                       'Powered by ',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFFADADAD),
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                     Text(
                       'M360 ICT',
