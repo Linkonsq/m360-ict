@@ -12,12 +12,7 @@ class HomeDetailsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 24,
-            right: 24,
-            top: 16,
-            bottom: 16,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             children: [
               _buildHeader(context),
@@ -39,9 +34,7 @@ class HomeDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       _buildPlantsCard(),
-                      const SizedBox(
-                        height: 20,
-                      ), // Add bottom padding for scrolling
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -57,26 +50,26 @@ class HomeDetailsScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Image.asset('assets/images/arrow_back.png'),
-            ),
-            const SizedBox(width: 14),
-            Image.asset('assets/images/home.png', width: 28, height: 28),
-            const SizedBox(width: 14),
-            const Text(
-              'Home',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w300,
-                color: kBoldTextColor,
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Row(
+            children: [
+              Image.asset('assets/images/arrow_back.png'),
+              const SizedBox(width: 14),
+              Image.asset('assets/images/home.png', width: 28, height: 28),
+              const SizedBox(width: 14),
+              const Text(
+                'Home',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w300,
+                  color: kBoldTextColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 8),
