@@ -1,16 +1,21 @@
-# m360_ict
+# **M360 ICT**  
 
-A new Flutter project.
+## **🎯 Project Overview**  
+A Flutter application built from a Figma design, featuring **10 screens** with **Firebase Authentication** (Email/Password Sign In & Sign Up).  
 
-## Getting Started
+## **✨ Features**  
+✔ **10 Screens** – Fully responsive UI from Figma  
+✔ **Firebase Auth** – Email/Password authentication  
+✔ **Clean Architecture** – Well-structured & maintainable code  
 
-This project is a starting point for a Flutter application.
+## **🎥 Demo**  
 
-A few resources to get you started if this is your first Flutter project:
+## **📸 Screenshots**  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## **⚙️ Installation**  
+**Clone the repo**  
+   ```sh
+   git clone https://github.com/Linkonsq/m360-ict/tree/main
+   cd repo-name
+   flutter pub get
+   flutter run
