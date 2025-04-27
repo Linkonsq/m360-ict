@@ -4,14 +4,13 @@
 A Flutter application built from a Figma design, featuring **10 screens** with **Firebase Authentication** (Email/Password Sign In & Sign Up).  
 
 ## **✨ Features**  
-✔ **10+ Screens** – Fully responsive UI from Figma  
+✔ **10 Screens** – Fully responsive UI from Figma  
 ✔ **Firebase Auth** – Email/Password authentication  
 ✔ **Clean Architecture** – Well-structured & maintainable code  
 
-## **📸 Screenshots**  
-
 ## **🎥 Demo**  
 
+## **📸 Screenshots**  
 
 ## **⚙️ Installation**  
 **Clone the repo**  
