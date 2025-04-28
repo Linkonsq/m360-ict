@@ -112,38 +112,44 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 34),
 
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24),
             child: Text('My Places', style: TextStyle(fontSize: 18)),
           ),
 
+          const SizedBox(height: 14),
+
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
-              child: ListView(
-                children: [
-                  PlaceCard(
-                    placeName: 'Home',
-                    status: 'Good',
-                    ppm: '652',
-                    percentage: '13%',
-                    statusColor: Colors.green,
-                    peopleCount: 2,
-                  ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    PlaceCard(
+                      placeName: 'Home',
+                      status: 'Good',
+                      ppm: '652',
+                      percentage: '13%',
+                      statusColor: Colors.green,
+                      peopleCount: 2,
+                    ),
 
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                  PlaceCard(
-                    placeName: 'Office',
-                    status: 'Healthy',
-                    ppm: '447',
-                    percentage: '37%',
-                    statusColor: Colors.green,
-                    peopleCount: 47,
-                  ),
-                ],
+                    PlaceCard(
+                      placeName: 'Office',
+                      status: 'Healthy',
+                      ppm: '447',
+                      percentage: '37%',
+                      statusColor: Colors.green,
+                      peopleCount: 47,
+                    ),
+
+                    const SizedBox(height: 14),
+                  ],
+                ),
               ),
             ),
           ),
