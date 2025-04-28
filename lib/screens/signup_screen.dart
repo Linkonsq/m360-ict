@@ -377,7 +377,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
 
-                // Already have an account and Powered by section
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: Column(

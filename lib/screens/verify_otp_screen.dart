@@ -173,9 +173,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () {
-                                // Resend code logic
-                              },
+                              onTap: () {},
                               child: const Text(
                                 'Resend',
                                 style: TextStyle(
@@ -193,7 +191,6 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                 ),
               ),
 
-              // Powered by section
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Row(
