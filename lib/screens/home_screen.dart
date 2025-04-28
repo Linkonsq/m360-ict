@@ -119,8 +119,6 @@ class HomeScreen extends StatelessWidget {
             child: Text('My Places', style: TextStyle(fontSize: 18)),
           ),
 
-          const SizedBox(height: 16),
-
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
